@@ -29,7 +29,6 @@ public class RandomPwd {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
     {

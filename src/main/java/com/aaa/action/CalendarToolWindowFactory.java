@@ -1,6 +1,7 @@
 // Copyright 2000-2023 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license.
 package com.aaa.action;
 
+import com.aaa.action.corn.RandomPwd;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
@@ -39,30 +40,19 @@ public class CalendarToolWindowFactory implements ToolWindowFactory, DumbAware {
 
 //    private static String zoned = "+8";
     private final JLabel timeMsgLabel = new JLabel();
+
     public CalendarToolWindowContent(ToolWindow toolWindow) {
       c.setLayout(new BorderLayout());
       JBTabbedPane panel = (JBTabbedPane) c.add(new JBTabbedPane(JTabbedPane.TOP));
       panel.addTab("时间戳", timeParent(toolWindow.getProject()));
-      panel.addTab("生成哈希",HashTool.createHashPanel(toolWindow.getProject()));
-      panel.addTab("随机密码",new JBLabel("test"));
-      panel.addTab("JSON格式化",new JBLabel("test"));
-//      panel.addTab("正则测试",new JBLabel("test"));
-//      panel.addTab("Crontab测试",new JBLabel("test"));
-//      panel.addTab("生成UUID",new JBLabel("test"));
+      panel.addTab("生成哈希", HashTool.createHashPanel(toolWindow.getProject()));
+      panel.addTab("随机密码", new RandomPwd().getContainer());
+      panel.addTab("JSON格式化", new JBLabel("test"));
       JBTabbedPane left = new JBTabbedPane(JTabbedPane.LEFT);
-       panel.addTab("左边菜单",left);
-      JPanel t1 = new JPanel(new FlowLayout());
-        JPanel lp1 = new JPanel(new BorderLayout());
-      t1.add(lp1);
-      lp1.add(new SimpleCode().getContainer());
-      left.addTab("测试1",t1);
-        JPanel lp2 = new JPanel();
-        lp2.add(new JBLabel("test2"));
-      left.addTab("测试2",lp2);
-        JPanel lp3 = new JPanel();
-        lp3.add(new JBLabel("test3"));
-      left.addTab("测试3",lp3);
-
+      panel.addTab("左边菜单", left);
+      JPanel lp1 = new JPanel(new BorderLayout());
+      lp1.add(new Samples().getContainer());
+      left.addTab("测试1", lp1);
     }
 
     public JPanel getContentPanel() {

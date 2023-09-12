@@ -160,4 +160,7 @@ public class RandomPwd {
         return container;
     }
 
+    public JPanel getContainer() {
+        return container;
+    }
 }
